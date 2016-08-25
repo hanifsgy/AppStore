@@ -32,6 +32,13 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         return collectionView
     }()
     
+    // Create Divider
+    let dividerLineView: UIView = {
+       let view = UIView()
+        view.backgroundColor = UIColor(white: 0.4, alpha: 0.4)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     func setupViews() {
         
@@ -39,11 +46,17 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         
         // Adding subView AppsCollection
         addSubview(appCollectionView)
+        addSubview(dividerLineView)
+        
+        
         appCollectionView.dataSource = self
         appCollectionView.delegate = self
         appCollectionView.registerClass(AppCell.self, forCellWithReuseIdentifier: cellId)
-        addConstraintsWithFormat("H:|-8-[v0]-|", views: appCollectionView)
-        addConstraintsWithFormat("V:|[v0]|", views: appCollectionView)
+        addConstraintsWithFormat("H:|[v0]|", views: appCollectionView)
+        addConstraintsWithFormat("V:|[v0][v1(0.5)]|", views: appCollectionView, dividerLineView)
+        // constraint divider
+        addConstraintsWithFormat("H:|-14-[v0]|", views: dividerLineView)
+        
         
         
     }
@@ -118,7 +131,6 @@ class AppCell: UICollectionViewCell {
         addSubview(labelName)
         addSubview(categoryLabel)
         addSubview(priceLabel)
-        backgroundColor = UIColor.blackColor()
         imageView.frame = CGRectMake(0, 0, frame.width, frame.width)
         labelName.frame = CGRectMake(0, frame.width + 2, frame.width, 40)
         categoryLabel.frame = CGRectMake(0, frame.width + 38, frame.width, 20)
