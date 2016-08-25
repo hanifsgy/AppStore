@@ -118,7 +118,7 @@ class AppCell: UICollectionViewCell {
         addSubview(labelName)
         addSubview(categoryLabel)
         addSubview(priceLabel)
-//        backgroundColor = UIColor.blackColor()
+        backgroundColor = UIColor.blackColor()
         imageView.frame = CGRectMake(0, 0, frame.width, frame.width)
         labelName.frame = CGRectMake(0, frame.width + 2, frame.width, 40)
         categoryLabel.frame = CGRectMake(0, frame.width + 38, frame.width, 20)
